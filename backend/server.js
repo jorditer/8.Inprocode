@@ -23,7 +23,7 @@ mongoose.connect(mongoUrl)
     .then(() => {
         console.log('Connected to MongoDB!');
         app.listen(PORT, () => {
-            console.log('Server started on http://localhost:3000');
+            console.log(`Server started on http://localhost:${PORT}`);
         });
     })
     .catch((error) => {
