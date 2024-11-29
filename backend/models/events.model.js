@@ -4,6 +4,7 @@ const EventSchema =  new mongoose.Schema({
   // Create a new schema, returns an object
   name: { type: String, required: [true, "Please add a name"] }, // name property, type string, required
   image: { type: String, required: false },
+  location: {type: String, required: false},
   category: { type: String, required: false },
   description: { type: String, required: false },
   price: { type: Number, required: true, default: 0 },
