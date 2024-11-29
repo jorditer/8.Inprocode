@@ -7,6 +7,7 @@ import eventRoutes from './routes/event.route.js';
 dotenv.config();
 
 const app = express();
+const PORT = process.env.PORT || 3000;
 
 app.use(express.json()); // Allows us to accept JSON data in the req.body
 
@@ -21,7 +22,7 @@ if (!mongoUrl) {
 mongoose.connect(mongoUrl)
     .then(() => {
         console.log('Connected to MongoDB!');
-        app.listen(3000, () => {
+        app.listen(PORT, () => {
             console.log('Server started on http://localhost:3000');
         });
     })
