@@ -32,8 +32,8 @@ export const deleteEvent = async (req, res) => {
 export const postEvent = async (req, res) => {
     const event = req.body;
     console.log(event);
-    if (!event || !event.name || !event.date) {
-        return res.status(400).json({ success: false, message: 'Please provide all fields' });
+    if (!event || !event.name || !event.date || !event.location || !event.price) {
+        return res.status(400).json({ success: false, message: 'Please provide all required fields' });
     }
 
     const newEvent = new Event(event);
