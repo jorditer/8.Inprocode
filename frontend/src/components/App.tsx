@@ -6,11 +6,14 @@ import Crud from './Crud'
 import Calendar from './Calendar'
 import Graphics from './Graphics'
 import Map from './Map'
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
+
+const queryClient = new QueryClient();
 
 function App() {
 
   return (
-    	<>
+    	<QueryClientProvider client={queryClient}>
       <Navbar />
       <Routes>
           <Route index element={<Crud />} />
@@ -19,7 +22,7 @@ function App() {
           <Route path="map" element={<Map />} />
           <Route path="calendar" element={<Calendar />}/>
       </Routes>
-    </>
+    </QueryClientProvider>
   )
 }
 
