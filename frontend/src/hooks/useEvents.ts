@@ -1,24 +1,20 @@
 import { useQuery } from '@tanstack/react-query';
-import { useDispatch } from 'react-redux';
-import { setEvents } from '../store/eventSlice';
 import type { Event, ApiResponse } from '../types/event';
 
 export const useEvents = () => {
-  const dispatch = useDispatch();
-  
   return useQuery<Event[]>({
     queryKey: ['events'],
+    staleTime: 1000 * 60 * 5, // 5 minutes, staleTime: Infinity
     queryFn: async () => {
       try {
         const response = await fetch('/api/home');
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
-        const { success, data }: ApiResponse = await response.json();
+        const { success, data }: ApiResponse = await response.json(); // adding {success, data} to the response.json() let's you check if the response was successful before using the data
         if (!success) {
           throw new Error('API returned unsuccessful response');
         }
-        dispatch(setEvents(data));
         return data;
       } catch (error) {
         throw new Error('Failed to fetch events');

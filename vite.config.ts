@@ -1,14 +1,21 @@
-import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import path from 'path'
+import { defineConfig, loadEnv } from 'vite'
 
-export default defineConfig({
-  server: {
-    proxy: {
-      '/api': {
-        target: 'http://localhost:5000',
-        changeOrigin: true
-      }
+export default defineConfig(({ mode }) => {
+  const env = loadEnv(mode, process.cwd(), '')
+  
+  return {
+    server: {
+      proxy: {
+        '/api': {
+          target: `http://localhost:${env.PORT || 5000}`, // prevents cors error
+          changeOrigin: true
+        }
+  //   '/public': {
+  //     target: 'http://localhost:5000',
+  //     changeOrigin: true
+  // },
     }
   },
   plugins: [react()],
@@ -16,4 +23,5 @@ export default defineConfig({
   build: {
     outDir: path.resolve(__dirname, 'dist'),
   },
-});
+}
+})
