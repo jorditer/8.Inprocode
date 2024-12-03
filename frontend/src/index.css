@@ -695,6 +695,10 @@ h1 {
   height: 2rem;
 }
 
+.h-full {
+  height: 100%;
+}
+
 .w-10 {
   width: 2.5rem;
 }

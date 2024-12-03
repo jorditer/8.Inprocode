@@ -8,5 +8,5 @@ export interface ConcertEvent {
   }
   export interface ApiResponse {
 	success: boolean;
-	data: Event[];
+	data: ConcertEvent[];
   }

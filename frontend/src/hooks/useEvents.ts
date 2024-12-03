@@ -1,8 +1,8 @@
 import { useQuery } from '@tanstack/react-query';
-import type { Event, ApiResponse } from '../types/event';
+import type { ConcertEvent, ApiResponse } from '../types/event';
 
 export const useEvents = () => {
-  return useQuery<Event[]>({
+  return useQuery<ConcertEvent[]>({
     queryKey: ['events'],
     staleTime: 1000 * 60 * 5, // 5 minutes, staleTime: Infinity
     queryFn: async () => {

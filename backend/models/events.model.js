@@ -1,39 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   events.model.js                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/03 10:57:04 by marvin            #+#    #+#             */
-/*   Updated: 2024/12/03 10:57:04 by marvin           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   events.model.js                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/03 10:57:03 by marvin            #+#    #+#             */
-/*   Updated: 2024/12/03 10:57:03 by marvin           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   events.model.js                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/03 10:57:02 by marvin            #+#    #+#             */
-/*   Updated: 2024/12/03 10:57:02 by marvin           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 import mongoose from "mongoose";
 
 const EventSchema =  new mongoose.Schema({
@@ -43,7 +7,7 @@ const EventSchema =  new mongoose.Schema({
   location: {type: String, required: true},
   // genre: { type: String, required: false },
   description: { type: String, required: false, default: "" }, // if not provided, default to empty string
-  "price": { type: Number, required: true},
+  price: { type: Number, required: true, default: 0 }, // if not provided, default to 0
   date: { type: Date, required: true },
 },
 {

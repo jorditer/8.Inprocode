@@ -3,6 +3,16 @@ const Form = ({newEvent, setNewEvent, handleCreate, setShowForm}) => {
 		const date = new Date(isoString);
 		return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}T${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}`;
 	};
+
+	const handlePriceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		const inputValue = e.target.value;
+		const numValue = inputValue === '' ? 0 : Number(inputValue);
+		
+		if (numValue >= 0 && numValue <= 99) {
+			setNewEvent({ ...newEvent, price: numValue });
+		}
+	};
+
 	return (
 		<div className="mb-6 lg:space-x-2 p-4 border rounded">
 			<input
@@ -23,7 +33,9 @@ const Form = ({newEvent, setNewEvent, handleCreate, setShowForm}) => {
 				type="number"
 				placeholder="Price"
 				value={newEvent.price}
-				onChange={e => setNewEvent({...newEvent, price: Number(e.target.value)})}
+				onChange={handlePriceChange}
+				min={0}
+				max={99}
 				className="mb-2 p-2 border rounded"
 			/>
 <input
