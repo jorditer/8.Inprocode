@@ -1,15 +1,14 @@
 import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-quartz.css";
-import { ConcertEvent } from "../types/event";
-import { useEvents } from "../hooks/useEvents";
+import { ConcertEvent } from "../types/ConcertEvent";
 import { useEventMutations } from "../hooks/useEventMutations";
 import { useState, useCallback, useMemo } from "react";
 import { GridReadyEvent, CellValueChangedEvent } from "ag-grid-community";
 import Form from "./Form";
+import { CrudProps } from "../types/CrudProps";
 
-const Crud = () => {
-  const { data: events, isLoading, error } = useEvents();
+const Crud = ({ events }: CrudProps) => {
   const { updateEvent, deleteEvent, createEvent } = useEventMutations();
   const [showForm, setShowForm] = useState(false);
   const [newEvent, setNewEvent] = useState<Omit<ConcertEvent, "_id">>({
@@ -19,6 +18,10 @@ const Crud = () => {
     date: new Date().toISOString(),
     description: "",
   });
+
+  const handleShowForm = () => {
+    setShowForm(prev => !prev);
+  }
 
   const DateTimeEditor = (props: any) => {
     // Initialize with current value
@@ -155,21 +158,18 @@ const Crud = () => {
     });
   }, []);
 
-  if (isLoading) return <div>...</div>;
-  if (error) return <div>Error: {error.message}</div>;
-
   return (
     <div className="mx-auto max-w-[95vw] ag-theme-quartz">
           <h1 className="ps-0">Events</h1>
     
       <button
-        onClick={() => setShowForm(true)}
+        onClick={() => handleShowForm()}
         className=" mb-6 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
         >
         Add Event
       </button>
         {showForm && (
-            <Form handleCreate={handleCreate} newEvent={newEvent} setNewEvent={setNewEvent} setShowForm={setShowForm} />
+            <Form handleCreate={handleCreate} newEvent={newEvent} setNewEvent={setNewEvent} handleShowForm={handleShowForm} />
         )}
         <AgGridReact
           rowData={events}

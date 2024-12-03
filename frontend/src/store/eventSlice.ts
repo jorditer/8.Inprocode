@@ -1,6 +1,6 @@
 // src/store/eventSlice.ts
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { ConcertEvent } from '../types/event';
+import { ConcertEvent } from '../types/ConcertEvent';
 
 // Define the state interface
 interface EventState {

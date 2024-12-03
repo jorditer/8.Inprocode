@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import type { ConcertEvent, ApiResponse } from '../types/event';
+import type { ConcertEvent, ApiResponse } from '../types/ConcertEvent';
 
 export const useEvents = () => {
   return useQuery<ConcertEvent[]>({

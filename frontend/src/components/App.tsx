@@ -6,25 +6,28 @@ import Crud from './Crud'
 import Calendar from './Calendar'
 import Graphics from './Graphics'
 import Map from './Map'
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
-
-const queryClient = new QueryClient();
-
-
+// import queryClient
+import { useEvents } from '../hooks/useEvents'
 
 function App() {
+  const { data: events, isLoading, error } = useEvents();
+
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error.message}</div>;
+  if (!events) return <div>No events found</div>;
+
 
   return (
-    	<QueryClientProvider client={queryClient}>
+    <>
       <Navbar />
       <Routes>
-          <Route index element={<Crud />} />
+          <Route index element={<Crud events={events}/>} />
           <Route path="calendar" element={<Calendar />}/>
-          <Route path="graphics" element={<Graphics />}/>
+          <Route path="graphics" element={<Graphics events={events}/>}/>
           <Route path="map" element={<Map />} />
           <Route path="calendar" element={<Calendar />}/>
       </Routes>
-    </QueryClientProvider>
+    </>
   )
 }
 
