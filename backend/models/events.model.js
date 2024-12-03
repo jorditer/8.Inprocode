@@ -1,3 +1,39 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   events.model.js                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/03 10:57:04 by marvin            #+#    #+#             */
+/*   Updated: 2024/12/03 10:57:04 by marvin           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   events.model.js                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/03 10:57:03 by marvin            #+#    #+#             */
+/*   Updated: 2024/12/03 10:57:03 by marvin           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   events.model.js                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/03 10:57:02 by marvin            #+#    #+#             */
+/*   Updated: 2024/12/03 10:57:02 by marvin           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 import mongoose from "mongoose";
 
 const EventSchema =  new mongoose.Schema({
@@ -7,7 +43,7 @@ const EventSchema =  new mongoose.Schema({
   location: {type: String, required: true},
   // genre: { type: String, required: false },
   description: { type: String, required: false, default: "" }, // if not provided, default to empty string
-  price: { type: Number, required: true},
+  "price": { type: Number, required: true},
   date: { type: Date, required: true },
 },
 {
@@ -20,7 +56,11 @@ const Event = mongoose.model("Event", EventSchema); // Create a model from the s
 export default Event;
 /*
 [
-{name: "Muchachito", location: "Salamandra", description: "Description 1", price: 20, date: "2022-01-01"},
-{name: "Sunny Girls", location: "Taro", description: "Post perreo a las 10", price: 10, date: "2022-02-02"},
+{"name": "Muchachito", "location": "Salamandra", "description": "Description 1", "price": 20, "date": "2022-01-01"},
+{"name": "Sunny Girls", "location": "Taro", "description": "Post perreo a las 10", "price": 10, "date": "2022-02-02"},
+{"name": "Marina Bajona", "location": "Heliogabal", "description": "Tontipop", "price": 18, "date": "2022-03-03"},
+{"name": "Rodriguez Rodriguez", "location": "VOL", "description": "Lo-fi", "price": 15, "date": "2022-05-07"},
+{"name": "Home is Where", "location": "El pumarejo", "description": "Emo", "price": 25, "date": "2022-04-08"},
+{"name": "Phoebe Bridgers", "location": "Apolo", "description": "Folk", "price": 38, "date": "2022-03-03"},
 ]
 */

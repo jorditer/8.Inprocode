@@ -4,6 +4,6 @@
 
 @layer components {
   h1 {
-    @apply p-5 mb-4 text-3xl font-extrabold text-transparent bg-clip-text max-w-max bg-gradient-to-r to-blue-700 from-emerald-500 md:text-5xl lg:text-6xl;
+    @apply p-5 mb-2 text-3xl font-extrabold text-transparent bg-clip-text max-w-max bg-gradient-to-r to-blue-700 from-emerald-500 md:text-5xl lg:text-6xl;
   }
 }

@@ -1,10 +1,10 @@
 // src/store/eventSlice.ts
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Event } from '../types/event';
+import { ConcertEvent } from '../types/event';
 
 // Define the state interface
 interface EventState {
-  items: Event[];
+  items: ConcertEvent[];
   status: 'idle' | 'loading' | 'succeeded' | 'failed';
 }
 
@@ -18,7 +18,7 @@ const eventSlice = createSlice({
   name: 'events',
   initialState,
   reducers: {
-    setEvents: (state: EventState, action: PayloadAction<Event[]>) => {
+    setEvents: (state: EventState, action: PayloadAction<ConcertEvent[]>) => {
       state.items = action.payload;
       state.status = 'succeeded';
     }
