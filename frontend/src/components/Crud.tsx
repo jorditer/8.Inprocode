@@ -20,6 +20,37 @@ const Crud = () => {
     description: "",
   });
 
+  const DateTimeEditor = (props: any) => {
+    // Initialize with current value
+    const initialValue = props.value;
+    const [value, setValue] = useState(initialValue);
+    
+    const formatDateForInput = (isoString: string) => {
+      const date = new Date(isoString);
+      return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}T${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes().toString().padStart(2, '0'))}`;
+    };
+  
+    const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      const newDate = new Date(e.target.value);
+      const isoString = newDate.toISOString();
+      setValue(isoString);
+      
+      // Update the cell value
+      props.node.setDataValue(props.column.colId, isoString);
+      props.stopEditing();
+    };
+  
+    return (
+      <input
+        type="datetime-local"
+        value={formatDateForInput(value)}
+        onChange={onChange}
+        className="w-full h-full"
+        step="60"
+      />
+    );
+  };
+
   const handleDelete = async (id: string) => {
     try {
       await deleteEvent.mutateAsync(id);
@@ -71,7 +102,6 @@ const Crud = () => {
       });
     } catch (error) {
       console.error("Failed to update:", error);
-      // Optionally refresh grid to revert changes
       params.api.refreshCells();
     }
   };
@@ -105,12 +135,13 @@ const Crud = () => {
       field: "date",
       minWidth: 150,
       editable: true,
+      cellEditor: DateTimeEditor,
       valueFormatter: (params: { value: string }) => {
         const date = new Date(params.value);
         const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
         return `${months[date.getMonth()]} ${date.getDate().toString().padStart(2, "0")} ${date.getHours().toString().padStart(2, "0")}:${date.getMinutes().toString().padStart(2, "0")}`;
       },
-    },
+    }
   ]);
 
   const onGridReady = useCallback((params: GridReadyEvent) => {
